@@ -1,0 +1,294 @@
+/* style.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Definindo nossas variáveis globais de cor. 
+  Bem mais fácil pra manter o padrão do design.
+*/
+:root {
+  --primary-green: #345b3a; /* O verde principal, usado no fundo */
+  --light-green: #c8e6c9; /* Tom mais claro pra textos e detalhes */
+  --stat-box-bg: #4a7c50; /* Fundo das 3 caixinhas de stats (Lições, XP...) */
+  --text-light: #ffffff;
+  --card-bg: #ffffff; /* Fundo branco dos cards */
+  --text-dark: #333333;
+  --progress-bar-fill: #4caf50;
+  --progress-bar-bg: #e0e0e0;
+  --nav-inactive: #a0a0a0; /* Cor do ícone inativo na nav inferior */
+  --nav-active: var(--primary-green); /* Cor do ícone ativo */
+  --help-fab-bg: #222222; /* Fundo do botão '?' */
+}
+
+/* Reset básico pra tirar margem/padding padrão do navegador */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--primary-green);
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 100px;
+}
+
+.container {
+  width: 100%;
+  /* Limitador de largura. Bom pra simular mobile e centralizar em telas grandes. */
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- O 'miolo' da página: avatar, texto, cards --- */
+.main-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Um espaço no topo, já que tiramos a barra de status */
+  margin-top: 30px;
+}
+
+.profile-avatar {
+  /* Posição relativa pra gente poder 'ancorar' o balão de chat nele. */
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--text-light);
+  background-color: #ccc;
+  /* Garante que a imagem do avatar não fique distorcida */
+  object-fit: cover;
+}
+
+.chat-bubble {
+  /* Posição absoluta, 'flutuando' em relação ao pai (.profile-avatar) */
+  position: absolute;
+  top: 15px;
+  right: -40px; /* Joga o balão pra fora da div do avatar */
+  background-color: var(--card-bg);
+  color: var(--text-dark);
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 0.9em;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* O 'triângulo' do balão de chat.*/
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent var(--card-bg) transparent transparent;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 0;
+}
+
+h2 {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.tagline {
+  font-size: 1em;
+  font-weight: 400;
+  color: var(--light-green);
+  margin-bottom: 30px;
+}
+
+/* --- Estilo base dos Cards --- */
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-dark);
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  /* Sombra leve pra dar profundidade */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+}
+
+.progress-card {
+  text-align: left;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1em;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+.progress-header span {
+  font-weight: 400;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: var(--progress-bar-bg);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-bar-filled {
+  height: 100%;
+  background-color: var(--progress-bar-fill);
+  border-radius: 6px;
+}
+
+.progress-footer {
+  font-size: 0.9em;
+  color: #757575;
+}
+
+.button-card {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text-dark);
+  border: none;
+  cursor: pointer;
+  /* Transição suave pra quando passar o mouse */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-card:hover {
+  background-color: #f5f5f5;
+  /* Efeito sutil de 'levantar' o botão no hover */
+  transform: translateY(-2px);
+}
+
+/* --- As 3 caixinhas: Lições, Conquistas, XP Total --- */
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+  /* Espaçamento entre as caixinhas */
+  gap: 10px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.stat-box {
+  background-color: var(--stat-box-bg);
+  border-radius: 12px;
+  padding: 15px 10px;
+  /* Magia do flexbox: faz as 3 caixas ocuparem o espaço igualmente.
+      (flex-grow: 1, flex-shrink: 1, flex-basis: 0%)
+    */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+}
+
+.stat-number {
+  font-size: 1.4em;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--light-green);
+}
+
+/* --- A barra de navegação 'Início' e 'Lições' --- */
+.bottom-nav {
+  /* Fixa a barra na parte de baixo da tela */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--card-bg);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.08);
+  /* Garante que a nav-bar fique *acima* de outros elementos */
+  z-index: 100;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  /* Cor padrão (inativo) */
+  color: var(--nav-inactive);
+  transition: color 0.2s ease;
+}
+
+.nav-item .nav-icon {
+  /* Aumenta o tamanho só do ícone (ou emoji) */
+  font-size: 1.6em;
+}
+
+.nav-item .nav-label {
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+/* Classe que o JS vai adicionar/remover (ou a página ativa) */
+.nav-item.active {
+  color: var(--nav-active);
+}
+
+.nav-item:hover {
+  color: var(--nav-active);
+}
+
+/* --- O botão flutuante de '?' (FAB) --- */
+.help-fab {
+  /* Fixo também, mas no cantinho */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--help-fab-bg);
+  color: var(--text-light);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  /* Mais alto que a nav-bar (100), pra ficar por cima dela. */
+  z-index: 101;
+  transition: transform 0.2s ease;
+}
+
+.help-fab:hover {
+  transform: scale(1.05);
+}
