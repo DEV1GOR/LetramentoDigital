@@ -1,9 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Letramento Digital</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <main class="main-content">
+        <div class="profile-avatar">
+          <img src="avatar.png" alt="Avatar de Coruja" />
+          <div class="chat-bubble">Olá! 👋</div>
+        </div>
+
+        <h1>Bem-vindo ao</h1>
+        <h2>Letramento Digital!</h2>
+        <p class="tagline">
+          Aprenda sobre tecnologia de forma divertida e interativa
+        </p>
+
+        <div class="card progress-card">
+          <div class="progress-header">
+            <strong>Seu progresso diário</strong>
+            <span id="progress-text">3/5 lições</span>
+          </div>
+          <div class="progress-bar-container">
+            <div
+              class="progress-bar-filled"
+              id="progress-bar"
+              style="width: 60%"
+            ></div>
+          </div>
+          <p class="progress-footer">
+            Continue assim! Faltam 2 lições para completar sua meta.
+          </p>
+        </div>
+
+        <button class="card button-card" id="startButton">
+          Começar Jornada
+        </button>
+
+        <section class="user-stats">
+          <div class="stat-box">
+            <span class="stat-number" id="lessons-count">15</span>
+            <span class="stat-label">Lições</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number" id="achievements-count">8</span>
+            <span class="stat-label">Conquistas</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-number" id="xp-total">1.250</span>
+            <span class="stat-label">XP Total</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Início</span>
+      </a>
+      <a href="#" class="nav-item">
+        <span class="nav-icon">📖</span>
+        <span class="nav-label">Lições</span>
+      </a>
+    </nav>
+
+    <a href="#" class="help-fab"> ? </a>
+
+    <script src="script.js"></script>
+  </body>
 </html>
